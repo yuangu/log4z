@@ -19,6 +19,10 @@ int main(int argc, char *argv[])
 	LOGE("log err");
 	LOGA("log alarm");
 	LOGF("log fatal");
+#ifdef WIN32
+	wchar_t *wstr = L"UNICODE¿í×Ö½Ú×Ö·û´®";
+	LOGF(wstr);
+#endif
 	LOGD("char:" <<'c'
 		<< ", unsigned char:" << (unsigned char) 'c'
 		<< ", short:" << (short) -1
@@ -36,9 +40,10 @@ int main(int argc, char *argv[])
 		<< ", const void*:" << (const int *) argv
 		<< ", constant:" << 1000 
 		<< ", constant:" << 100.12345678
-		<< ", bool:" << (bool) true);
-	LOGA("press anykey to exit ...");
-	getchar();
+		<< ", bool:" << (bool) true
+		<< ", show hex data:" << BinaryBlock("1234567890abcdefghigklmnopqrstuvwxyz_zyw_zsummer_log4z", 50));
+
+	LOGA("main quit ...");
 	return 0;
 }
 
